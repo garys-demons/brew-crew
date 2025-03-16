@@ -14,7 +14,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    void _showSettingsPanel() {
+    void showSettingsPanel() {
       showModalBottomSheet(context: context, builder: (context) {
         return Container(
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
@@ -46,7 +46,7 @@ class Home extends StatelessWidget {
               icon: const Icon(Icons.person, color: Colors.black,),
               ),
               TextButton.icon(
-                onPressed: () => _showSettingsPanel(), 
+                onPressed: () => showSettingsPanel(), 
                 label: const Text(''),
                 icon: const Icon(Icons.settings, color: Colors.black,),)
           ],

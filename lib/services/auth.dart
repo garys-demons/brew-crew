@@ -1,6 +1,7 @@
 import 'package:brew_crew/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:brew_crew/models/user.dart';
+import 'package:flutter/material.dart';
 // import 'package:brew_crew/screens/home/settings_form.dart';
 
 class AuthService {
@@ -28,34 +29,34 @@ class AuthService {
         User? user = result.user;
         return _userFromFirebaseUser(user!);
     } catch(e) {
-        print(e.toString());
+        debugPrint(e.toString());
         return null;
     }
   }
 
 
   //sign in with email and password
-  Future SignInWithEmailAndPasswd(String email, String password) async {
+  Future signInWithEmailAndPasswd(String email, String password) async {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(email: email, password: password);
       User? user = result.user;
       return user;
     } catch(e){
-      print(e.toString());
+      debugPrint(e.toString());
       return null;
     }
   }
 
 
   //register with email and password
-  Future resgisterWithEmailAndPasswd(String email, String password) async {
+  Future registerWithEmailAndPasswd(String email, String password) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User? user = result.user;
       await DatabaseService(uid : user!.uid).updateUserData('0', 'new crew member', 100);
       return _userFromFirebaseUser(user);
     } catch(e){
-      print(e.toString());
+      debugPrint(e.toString());
       return null;
     }
   }
@@ -66,7 +67,7 @@ class AuthService {
     try{
       return await _auth.signOut();
     } catch(e){
-      print(e.toString());
+      debugPrint(e.toString());
       return null;
     }
   }
