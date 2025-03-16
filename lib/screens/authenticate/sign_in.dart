@@ -29,7 +29,7 @@ class _SignInState extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading() : Scaffold(
+    return loading ? const Loading() : Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 95, 66, 55),
@@ -92,7 +92,7 @@ class _SignInState extends State<SignIn> {
                       setState(() {
                         loading = true;
                       });
-                      dynamic result = await _auth.SignInWithEmailAndPasswd(email, password);
+                      dynamic result = await _auth.signInWithEmailAndPasswd(email, password);
                       if (result==null){
                         setState(() {
                           error = 'Could not sign in with those credentials';

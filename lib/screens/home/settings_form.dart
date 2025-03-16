@@ -93,6 +93,7 @@ class _SettingsState extends State<Settings> {
                         _currentName ?? userData?.name ?? 'New crew member',
                         _currentStrength ?? userData?.strength ?? 100,
                       );
+                      // ignore: use_build_context_synchronously
                       if (mounted) Navigator.pop(context);
                     }
                   },

@@ -27,7 +27,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading() : Scaffold(
+    return loading ? const Loading() : Scaffold(
       backgroundColor: Colors.brown[100],
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 95, 66, 55),
@@ -87,19 +87,24 @@ class _RegisterState extends State<Register> {
                 const SizedBox(height: 20.0,),
                 ElevatedButton(
                   onPressed: () async {
-                    if (_formKey.currentState!.validate()){
-                      setState(() {
-                        loading = true;
-                      });
-                      dynamic result = await _auth.resgisterWithEmailAndPasswd(email, password);
-                      if (result==null){
+                    if (_formKey.currentState!.validate()) {
+                      if (mounted) {
                         setState(() {
-                          error = 'please supply a valid email';
+                          loading = true;
+                        });
+                      }
+                    dynamic result = await _auth.registerWithEmailAndPasswd(email, password);
+                    if (mounted) {
+                      if (result == null) {
+                        setState(() {
+                          error = 'Please supply a valid email';
                           loading = false;
                         });
                       }
                     }
-                  },
+                  }
+                },
+
                   child: const Text(
                     'Register',
                     style: TextStyle(color: Colors.brown),

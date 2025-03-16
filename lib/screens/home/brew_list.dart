@@ -18,8 +18,8 @@ class _BrewListState extends State<BrewList> {
     final brews = Provider.of<List<Brew>>(context);
     
     return ListView.builder(
-      itemBuilder: (context,Index) {
-        return BrewTile(brew: brews[Index]);
+      itemBuilder: (context,index) {
+        return BrewTile(brew: brews[index]);
       },
       itemCount: brews.length,
       );
